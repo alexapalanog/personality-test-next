@@ -1,9 +1,7 @@
-"use client"; // This component doesn't strictly need it, but it's good practice for leaf components with no server-side logic.
-
 import React from 'react';
 
 const BackgroundIcons = () => {
-    // Your original SVG data
+    // We define the SVGs without keys here.
     const icons = [
         <svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>,
         <svg viewBox="0 0 24 24"><path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5C5.33 4.5 4.11 4.65 3 5V19c1.11.35 2.33.5 3.5.5 1.95 0 4.05-.4 5.5-1.5 1.45 1.1 3.55 1.5 5.5 1.5 1.17 0 2.39-.15 3.5-.5V5zM19 17c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5V6.5c1.45-1.1 3.55-1.5 5.5-1.5 1.17 0 2.39.15 3.5.5v11.5z"/></svg>,
@@ -21,11 +19,9 @@ const BackgroundIcons = () => {
 
     return (
         <div className="background-icons" aria-hidden="true">
-            {icons.map((icon, i) => (
-                // React wants a key on the top-level element in a map,
-                // but since the SVGs themselves have keys, we use a fragment
-                // with a key for the wrapper div.
-                <div className="icon-wrapper" key={i}>
+            {/* This is the standard and correct way to render a list in React */}
+            {icons.map((icon, index) => (
+                <div className="icon-wrapper" key={`bg-icon-${index}`}>
                     {icon}
                 </div>
             ))}
