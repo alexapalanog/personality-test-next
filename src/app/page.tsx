@@ -1,5 +1,3 @@
-// src/app/page.tsx
-
 "use client";
 
 import React, { useState } from 'react';
@@ -23,17 +21,20 @@ export default function Home() {
         setPage('home');
     }
 
-    return (
+   return (
       <>
         <AppHeader page={page} onTakeTest={handleStartQuiz} onGoHome={handleGoHome} />
         <main className={`app-container ${page === 'home' ? 'home-main-container' : ''}`}>
          {page === 'home' ? (
-            <HomePage onStartQuiz={handleStartQuiz} />
+            // When on the 'home' page, render both HomePage AND BackgroundIcons
+            <>
+                <HomePage onStartQuiz={handleStartQuiz} />
+                <BackgroundIcons />
+            </>
          ) : (
-            // The fix is here: Pass the handleGoHome function to the QuizPage component
+            // When on any other page (i.e., 'quiz'), only render the quiz
             <QuizApp onGoHome={handleGoHome} />
          )}
-         <BackgroundIcons />
         </main>
         <Footer />
       </>
